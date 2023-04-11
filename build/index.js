@@ -15,10 +15,10 @@ const options = {
     origin: allowedOrigins
 };
 app.use((0, cors_1.default)(options));
-const PORT = 4001;
-app.use('/users', user_route_1.default);
-app.use('/crypto', crypto_route_1.default);
-app.use('/relation', relation_route_1.default);
+const PORT = 5000;
+app.use('/api/users', user_route_1.default);
+app.use('/api/crypto', crypto_route_1.default);
+app.use('/api/relation', relation_route_1.default);
 app.listen(PORT, () => {
     console.log(`Servidor escuchando en el puerto ${PORT}`);
 });

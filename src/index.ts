@@ -13,11 +13,11 @@ const options: cors.CorsOptions = {
 }
 app.use(cors(options))
 
-const PORT = 4001
+const PORT = 5000
 
-app.use('/users', userRouter)
-app.use('/crypto', cryptoRouter)
-app.use('/relation', relationRouter)
+app.use('/api/users', userRouter)
+app.use('/api/crypto', cryptoRouter)
+app.use('/api/relation', relationRouter)
 
 
 app.listen(PORT, () => {

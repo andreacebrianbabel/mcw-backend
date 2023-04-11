@@ -69,7 +69,6 @@ class UserService {
             password: userPojo.dataValues.password,
             email: userPojo.dataValues.email,
             fullname: userPojo.dataValues.fullname,
-            birthday: userPojo.dataValues.birthday,
             deposit: userPojo.dataValues.deposit
         };
         return userDto;

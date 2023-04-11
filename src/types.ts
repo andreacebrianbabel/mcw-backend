@@ -4,7 +4,6 @@ export class UserDto {
     password: string
     email: string
     fullname: string
-    birthday: number
     deposit: number
 }
 
