@@ -23,4 +23,4 @@ export class RelationDto {
     amount: number
 }
 
-export type NewRelationDto = Omit<RelationDto, 'user_id'>
+// export type NewRelationDto = Omit<RelationDto, 'user_id'>
