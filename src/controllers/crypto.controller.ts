@@ -6,8 +6,8 @@ export const cryptoController = {
         cryptoService.getAllCryptos().then(result => {
             res.json(result)
 
-        }).catch(excepcion => {
-            console.error(excepcion)
+        }).catch(exception => {
+            console.error(exception)
             res.sendStatus(500)
         })
     },

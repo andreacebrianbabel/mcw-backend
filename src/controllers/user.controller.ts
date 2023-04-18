@@ -13,10 +13,19 @@ export const userController = {
                 res.json(result)
             })
 
-        } catch (excepcion) {
-            console.error(excepcion)
+        } catch (exception) {
+            console.error(exception)
             res.sendStatus(500)
         }
+    },
+
+    getAllUsers: (req: any, res: any) => {
+        userService.getAllUsers().then(result => {
+            res.json(result)
+        }).catch(exception => {
+            console.error(exception)
+            res.sendStatus(500)
+        })
     },
 
     getUserById: (req: any, res: any) => {
@@ -27,8 +36,8 @@ export const userController = {
                 console.log(result)
             })
 
-        } catch (excepcion) {
-            console.error(excepcion)
+        } catch (exception) {
+            console.error(exception)
             res.sendStatus(500)
         }
     },

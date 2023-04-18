@@ -20,6 +20,15 @@ export class UserRepository {
         }
     }
 
+    async getAllUsers(): Promise<UserPojo[]> {
+        try {
+            return await this._userRepository.findAll()
+        } catch (error) {
+            console.error(error)
+            throw error
+        }
+    }
+
     async getUserById(id: string): Promise<UserPojo | undefined> {
         try {
             return await this._userRepository.findByPk(id)

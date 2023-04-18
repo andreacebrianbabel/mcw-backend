@@ -1,5 +1,4 @@
 import { RelationDto } from './../types';
-// import { NewRelationDto } from "../types"
 import { RelationPojo } from '../data/models/relation.model';
 import { RelationRepository } from '../data/repositories/relation.repository';
 
@@ -18,28 +17,21 @@ export class RelationService {
             })
     }
 
-    // async updateRelationAmountById(relation: RelationDto): Promise<RelationDto> {
-    //     const relationAmountPojo: RelationPojo = this.parseRelationDtoIntoPojo(relation)
-    //     console.log("En el service(POJO): " + relationAmountPojo)
-    //     const relationPromise = await this._relationRepository
-    //         .updateRelationAmountById(relationAmountPojo)
-    //         .then((amount) => {
-    //             return amount
-    //         })
-    //         .catch((error) => {
-    //             console.error(error)
-    //             throw error
-    //         })
+    async updateRelationById(relation: RelationDto): Promise<string> {
+        const relationAmountPojo: RelationPojo = relation as RelationPojo
+        console.log("En el service(POJO): " + relationAmountPojo)
+        const relationPromise = await this._relationRepository
+            .updateRelationById(relationAmountPojo)
+            .then((amount) => {
+                return amount
+            })
+            .catch((error) => {
+                console.error(error)
+                throw error
+            })
 
-    //     return relationPromise
-    // }
-
-    // async getCryptoById(crypto_id: string, user_id: string): Promise<any> {
-    //     return await this._relationRepository.getCryptoById(crypto_id, user_id)
-    //         .then(RelationPojo => {
-    //             return RelationPojo
-    //         })
-    // }
+        return relationPromise
+    }
 
     parseRelationDtoIntoPojo(relationDto: RelationDto): RelationPojo {
         let relationPojo: RelationPojo = new RelationPojo()

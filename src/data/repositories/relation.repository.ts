@@ -1,6 +1,7 @@
 import { RelationPojo } from './../models/relation.model';
 import { connect } from "../config/db.config";
 import { QueryTypes } from 'sequelize';
+import { RelationDto } from '../../types';
 
 export class RelationRepository {
     _database: any = {}
@@ -21,6 +22,23 @@ export class RelationRepository {
         } catch (error) {
             console.error(error)
             return undefined
+        }
+    }
+
+    async updateRelationById(newRelation: RelationPojo): Promise<string> {
+        const data = await this._relationRepository.findOne({where: {
+            user_id: newRelation.user_id,
+            crypto_id: newRelation.crypto_id
+        }})
+        if (!!data) {
+            this._relationRepository.update({ amount: newRelation.amount }, {where: {
+                user_id: newRelation.user_id,
+                crypto_id: newRelation.crypto_id
+            }})
+            return "Updated"
+        } else {
+            this._relationRepository.create(newRelation)
+            return "Created"
         }
     }
 }
