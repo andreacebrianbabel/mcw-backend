@@ -50,4 +50,21 @@ export class UserRepository {
         }
         return user
     }
+
+    async updateUserById(newUser: UserPojo): Promise<string> {
+        const data = await this._userRepository.findOne({
+            where: {
+                user_id: newUser.user_id,
+            }
+        })
+
+        if (!!data) {
+            this._userRepository.update({ deposit: newUser.deposit }, {
+                where: {
+                    user_id: newUser.user_id
+                }
+            })
+        }
+        return data
+    }
 }

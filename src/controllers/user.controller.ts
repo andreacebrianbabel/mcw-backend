@@ -53,5 +53,23 @@ export const userController = {
             console.error(error)
             res.sendStatus(500)
         }
+    },
+
+    updateUserById: (req: any, res: any) => {
+        try {
+            const newUser = req.body
+
+            console.log("newUser en el controller: " + newUser)
+
+            userService.updateUserById(newUser).then((result) => {
+                console.log("newUser desde controller")
+                res.json(result)
+            })
+        } catch (exception) {
+            console.log("Error newUser desde el controller")
+
+            console.log(exception)
+            res.sendStatus(500)
+        }
     }
 }

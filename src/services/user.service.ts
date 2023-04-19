@@ -69,6 +69,22 @@ export class UserService {
         return usersPromise
     }
 
+    async updateUserById(user: UserDto): Promise<string> {
+        const userDepositPojo: UserPojo = user as UserPojo
+        console.log("En el service del pojo(POJO): " + userDepositPojo)
+        const cryptoPromise = await this._userRepository
+            .updateUserById(userDepositPojo)
+            .then((user) => {
+                return user
+            })
+            .catch((error) => {
+                console.error(error)
+                throw error
+            })
+
+        return cryptoPromise
+    }
+
 
     parseUserDtoIntoPojo(userDto: NewUserDto): UserPojo {
         let newUser: UserDto = userDto as UserDto

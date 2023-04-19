@@ -41,9 +41,7 @@ export class CryptoRepository {
                     crypto_id: newCrypto.crypto_id
                 }
             })
-            return data
-        } else {
-            return undefined
         }
+        return data
     }
 }
