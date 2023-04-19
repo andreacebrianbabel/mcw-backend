@@ -7,6 +7,7 @@ export const relationController = {
             const user_id = req.params.id
             relationService.getRelationById(user_id).then(result => {
                 res.json(result)
+                console.log(result)
             })
 
         } catch (exception) {

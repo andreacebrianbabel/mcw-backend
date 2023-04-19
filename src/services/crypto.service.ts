@@ -26,6 +26,36 @@ export class CryptoService {
         return cryptosPromise
     }
 
+    async getCryptoById(id: string): Promise<CryptoDto | undefined> {
+        console.log
+        const cryptoPromise = await this._cryptoRepository.getCryptoById(id).then(cryptoAsPojo => {
+            if (!!cryptoAsPojo)
+                return this.parseCryptoPojoIntoDto(cryptoAsPojo)
+            else
+                return undefined
+        }).catch(error => {
+            console.error(error)
+            throw error
+        })
+        return cryptoPromise
+    }
+
+    async updateCryptoById(crypto: CryptoDto): Promise<string> {
+        const cryptoStockPojo: CryptoPojo = crypto as CryptoPojo
+        console.log("En el service del pojo(POJO): " + cryptoStockPojo)
+        const cryptoPromise = await this._cryptoRepository
+            .updateCryptoById(cryptoStockPojo)
+            .then((stock) => {
+                return stock
+            })
+            .catch((error) => {
+                console.error(error)
+                throw error
+            })
+
+        return cryptoPromise
+    }
+
     parseCryptoDtoIntoPojo(cryptoDto: CryptoDto): CryptoPojo {
         let cryptoPojo: CryptoPojo = new CryptoPojo()
 

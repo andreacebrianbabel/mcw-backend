@@ -19,7 +19,7 @@ export class RelationService {
 
     async updateRelationById(relation: RelationDto): Promise<string> {
         const relationAmountPojo: RelationPojo = relation as RelationPojo
-        console.log("En el service(POJO): " + relationAmountPojo)
+        console.log("En el service del pojo(POJO): " + relationAmountPojo)
         const relationPromise = await this._relationRepository
             .updateRelationById(relationAmountPojo)
             .then((amount) => {

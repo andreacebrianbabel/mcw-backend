@@ -1,7 +1,6 @@
 import { RelationPojo } from './../models/relation.model';
 import { connect } from "../config/db.config";
 import { QueryTypes } from 'sequelize';
-import { RelationDto } from '../../types';
 
 export class RelationRepository {
     _database: any = {}
@@ -35,10 +34,10 @@ export class RelationRepository {
                 user_id: newRelation.user_id,
                 crypto_id: newRelation.crypto_id
             }})
-            return "Updated"
+            return data
         } else {
             this._relationRepository.create(newRelation)
-            return "Created"
+            return "Created new relation"
         }
     }
 }

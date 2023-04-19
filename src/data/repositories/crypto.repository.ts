@@ -18,4 +18,32 @@ export class CryptoRepository {
             throw error
         }
     }
+
+    async getCryptoById(id: string): Promise<CryptoPojo | undefined> {
+        try {
+            return await this._cryptoRepository.findByPk(id)
+        } catch (error) {
+            console.error(error)
+            return undefined
+        }
+    }
+
+    async updateCryptoById(newCrypto: CryptoPojo): Promise<string> {
+        const data = await this._cryptoRepository.findOne({
+            where: {
+                crypto_id: newCrypto.crypto_id,
+            }
+        })
+
+        if (!!data) {
+            this._cryptoRepository.update({ stock: newCrypto.stock }, {
+                where: {
+                    crypto_id: newCrypto.crypto_id
+                }
+            })
+            return data
+        } else {
+            return undefined
+        }
+    }
 }
