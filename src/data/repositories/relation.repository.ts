@@ -37,7 +37,7 @@ export class RelationRepository {
             return data
         } else {
             this._relationRepository.create(newRelation)
-            return "Created new relation"
+            return "Created"
         }
     }
 }
