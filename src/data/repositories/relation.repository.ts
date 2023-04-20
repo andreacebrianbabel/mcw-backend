@@ -25,19 +25,37 @@ export class RelationRepository {
     }
 
     async updateRelationById(newRelation: RelationPojo): Promise<string> {
-        const data = await this._relationRepository.findOne({where: {
-            user_id: newRelation.user_id,
-            crypto_id: newRelation.crypto_id
-        }})
-        if (!!data) {
-            this._relationRepository.update({ amount: newRelation.amount }, {where: {
+        const data = await this._relationRepository.findOne({
+            where: {
                 user_id: newRelation.user_id,
                 crypto_id: newRelation.crypto_id
-            }})
+            }
+        })
+        if (!!data) {
+            this._relationRepository.update({ amount: newRelation.amount }, {
+                where: {
+                    user_id: newRelation.user_id,
+                    crypto_id: newRelation.crypto_id
+                }
+            })
             return data
         } else {
             this._relationRepository.create(newRelation)
             return "Created"
         }
     }
+
+    async deleteRelationById(user_id: string, crypto_id: string): Promise<any> {
+        try {
+          return await this._relationRepository.destroy({
+            where: {
+              user_id: user_id,
+              crypto_id: crypto_id
+            },
+          });
+        } catch (exception) {
+          console.error(exception);
+          return "";
+        }
+      }
 }

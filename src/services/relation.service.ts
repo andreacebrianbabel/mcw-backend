@@ -33,6 +33,15 @@ export class RelationService {
         return relationPromise
     }
 
+    async deleteRelationById(user_id: string, crypto_id: string): Promise<any>{
+        return await this._relationRepository.deleteRelationById(user_id, crypto_id)
+            .then(result => result)
+            .catch(expception => {
+                console.error(expception);
+                throw expception;
+            })
+    }
+
     parseRelationDtoIntoPojo(relationDto: RelationDto): RelationPojo {
         let relationPojo: RelationPojo = new RelationPojo()
 

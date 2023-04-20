@@ -34,4 +34,13 @@ export const relationController = {
             res.sendStatus(500)
         }
     },
+
+    deleteRelationById: (req: any, res: any) => {
+        try {
+            relationService.deleteRelationById(req.params.user_id, req.params.crypto_id).then(relationDeleted => res.json(relationDeleted));
+        } catch (exception) {
+            console.error(exception);
+            res.sendStatus(500);
+        }
+    }
 }
